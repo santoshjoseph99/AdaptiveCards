@@ -6,6 +6,7 @@
 #include "AdaptiveImage.h"
 #include "AdaptiveRenderArgs.h"
 #include "AdaptiveShowCardActionRenderer.h"
+#include "LinkButton.h"
 
 using namespace Microsoft::WRL;
 using namespace Microsoft::WRL::Wrappers;
@@ -276,8 +277,20 @@ namespace AdaptiveNamespace::ActionHelpers
     {
         // Render a button for the action
         ComPtr<IAdaptiveActionElement> action(adaptiveActionElement);
-        ComPtr<IButton> button =
-            XamlHelpers::CreateXamlClass<IButton>(HStringReference(RuntimeClass_Windows_UI_Xaml_Controls_Button));
+        ABI::AdaptiveNamespace::ActionType actionType;
+        RETURN_IF_FAILED(action->get_ActionType(&actionType));
+
+        ComPtr<IButton> button;
+        if (actionType == ABI::AdaptiveNamespace::ActionType::OpenUrl)
+        {
+            ComPtr<LinkButton> linkButton;
+            RETURN_IF_FAILED(MakeAndInitialize<LinkButton>(&linkButton));
+            RETURN_IF_FAILED(linkButton.As(&button));
+        }
+        else
+        {
+            button = XamlHelpers::CreateXamlClass<IButton>(HStringReference(RuntimeClass_Windows_UI_Xaml_Controls_Button));
+        }
 
         ComPtr<IFrameworkElement> buttonFrameworkElement;
         RETURN_IF_FAILED(button.As(&buttonFrameworkElement));
@@ -335,9 +348,6 @@ namespace AdaptiveNamespace::ActionHelpers
                              hostConfig.Get(),
                              allowAboveTitleIconPlacement,
                              button.Get());
-
-        ABI::AdaptiveNamespace::ActionType actionType;
-        RETURN_IF_FAILED(action->get_ActionType(&actionType));
 
         ComPtr<IAdaptiveShowCardActionConfig> showCardActionConfig;
         RETURN_IF_FAILED(actionsConfig->get_ShowCard(&showCardActionConfig));
