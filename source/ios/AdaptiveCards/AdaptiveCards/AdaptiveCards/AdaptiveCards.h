@@ -1,6 +1,6 @@
 //
-//  ACFramework.h
-//  ACFramework
+//  AdaptiveCards.h
+//  AdaptiveCards
 //
 //  Copyright © 2017 Microsoft. All rights reserved.
 //
@@ -12,7 +12,6 @@ FOUNDATION_EXPORT double AdaptiveCardsFrameworkVersionNumber;
 
 //! Project version string for AFramework.
 FOUNDATION_EXPORT const unsigned char AdaptiveCarsFrameworkVersionString[];
-
 #import <AdaptiveCards/ACOAdaptiveCard.h>
 #import <AdaptiveCards/ACOAdaptiveCardParseResult.h>
 #import <AdaptiveCards/ACOBaseCardElement.h>
@@ -52,6 +51,7 @@ FOUNDATION_EXPORT const unsigned char AdaptiveCarsFrameworkVersionString[];
 #import <AdaptiveCards/ACRRegistration.h>
 #import <AdaptiveCards/ACRRenderResult.h>
 #import <AdaptiveCards/ACRRenderer.h>
+#import <AdaptiveCards/ACRRichTextBlockRenderer.h>
 #import <AdaptiveCards/ACRTextBlockRenderer.h>
 #import <AdaptiveCards/ACRTextView.h>
 #import <AdaptiveCards/ACRView.h>

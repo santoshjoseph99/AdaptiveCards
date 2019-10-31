@@ -10,7 +10,6 @@
 #import <AdaptiveCards/SharedAdaptiveCard.h>
 #import <AdaptiveCards/TextBlock.h>
 #import <AdaptiveCards/ACRTextBlockRenderer.h>
-#import <AdaptiveCards/ACFramework.h>
 #import <AdaptiveCards/ACOBaseCardElementPrivate.h>
 #import <AdaptiveCards/ACOHostConfigPrivate.h>
 #import <AdaptiveCards/ACRContentHoldingUIView.h>
